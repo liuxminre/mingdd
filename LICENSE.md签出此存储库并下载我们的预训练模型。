@@ -1,0 +1,4 @@
+git clone https://github.com/andyzeng/visual-pushing-grasping.git visual-pushing-grasping
+cd visual-pushing-grasping/downloads
+./download-weights.sh
+cd ..
