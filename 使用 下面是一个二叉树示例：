@@ -1,0 +1,10 @@
+use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinaryTree;
+
+$binaryTree = new BinaryTree();
+$binaryTree->insertValue(50);
+$binaryTree->insertValue(25);
+$binaryTree->insertValue(75);
+$binaryTree->insertValue(10);
+$binaryTree->insertValue(100);
+
+echo json_encode($binaryTree);
