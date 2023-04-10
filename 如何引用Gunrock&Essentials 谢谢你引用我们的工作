@@ -1,0 +1,24 @@
+@article{Wang:2017:GGG,
+  author =	 {Yangzihao Wang and Yuechao Pan and Andrew Davidson
+                  and Yuduo Wu and Carl Yang and Leyuan Wang and
+                  Muhammad Osama and Chenshan Yuan and Weitang Liu and
+                  Andy T. Riffel and John D. Owens},
+  title =	 {{G}unrock: {GPU} Graph Analytics},
+  journal =	 {ACM Transactions on Parallel Computing},
+  year =	 2017,
+  volume =	 4,
+  number =	 1,
+  month =	 aug,
+  pages =	 {3:1--3:49},
+  doi =		 {10.1145/3108140},
+  ee =		 {http://arxiv.org/abs/1701.01170},
+  acmauthorize = {https://dl.acm.org/doi/10.1145/3108140?cid=81100458295},
+  url =		 {http://escholarship.org/uc/item/9gj6r1dj},
+  code =	 {https://github.com/gunrock/gunrock},
+  ucdcite =	 {a115},
+}
+void prepare_frontier(frontier_t* f,
+                      gcuda::multi_context_t& context) override {
+  auto P = this->get_problem();
+  f->push_back(P->param.single_source);
+}
