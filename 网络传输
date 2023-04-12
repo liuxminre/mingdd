@@ -1,0 +1,63 @@
+//
+//transfer.c
+//算法-网络传输
+//
+//由YourtionGuo于2017年5月18日创建。
+//版权所有©2017Yourtion。保留所有权利。
+//
+
+#包括 <sys/types.h>
+#包括 <sys/socket.h>
+
+#包括 "compress.h"
+#包括 "transfer.h"
+
+#杂注标记-公共
+
+
+int 发送组件(_C)(ints，Const 无符号 烧焦*数据，int大小，int标志)
+{
+  无符号 烧焦*已压缩；
+  intsize_comp；
+
+  /// 压缩数据
+  如果((size_comp=Huffman_compress(数据，压缩，大小))<0)返回-1;
+
+  /// 发送压缩数据及大小
+
+  如果(发送(s，(烧焦*)&size_comp，sizeof(int)，标志)！=sizeof(int))返回-1;
+
+  如果(发送(s，(烧焦*)压缩，size_comp，标志)！=size_comp)返回-1;
+
+  /// 释放已压缩数据
+  免费的(压缩)；
+
+  返回 0;
+}
+
+
+int recv_comp(ints，无符号 烧焦**数据，int*尺寸，int标志)
+{
+  无符号 烧焦*已压缩；
+  intsize_comp；
+
+  /// 根据数据大小接收压缩数据
+
+  如果(recv(s，(烧焦*)&size_comp，sizeof(int)，标志)！=sizeof(int))返回-1;
+
+  如果((压缩=(无符号 烧焦*)malloc(size_comp))==无效的)返回-1;
+
+  如果(recv(s，(烧焦*)压缩，size_comp，标志)！=size_comp){
+
+    免费的(压缩)；
+    返回-1;
+}
+
+  /// 解压数据
+  如果((*size=Huffman_uncompress(压缩，数据))<0)返回-1;
+
+  /// 释放收到的压缩数据
+  免费的(压缩)；
+  
+  返回 0;
+}
